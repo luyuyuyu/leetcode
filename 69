@@ -1,0 +1,16 @@
+public int mySqrt(int x) {
+        if (x == 0 || x == 1) return x;
+        int left = 1;
+        long right = x;
+        while (left < right - 1) {
+            long mid = left + (right - left) / 2;
+            if (mid * mid == x) {//may x * x overflow? use long mid
+                return (int)mid;//need to return an int
+            } else if (mid * mid < x) {
+                left = (int)mid;
+            } else {
+                right = (int)mid;
+            }
+        }
+        return (int) (right * right <= x ? right : left);/int right * right may also overflow use long right and then cast to an int
+    }
